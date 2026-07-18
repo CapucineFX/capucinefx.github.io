@@ -29,8 +29,7 @@
   /* text colors */
   .text-dark { color: var(--dark) }
   .text-primary { color: var(--primary) }
-    .text-soft-primary { color: var(--soft-primary) }
-
+  .text-soft-primary { color: var(--soft-primary) }
   .text-soft-dark { color: var(--soft-dark) }
   .text-secondary { color: var(--secondary) }
   .text-success { color: var(--success) }
