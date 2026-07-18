@@ -1,11 +1,14 @@
 :root {
-  
-    --primary-middle : #6b3420;
-    --primary-dark: #541d0c;
+
+    --soft-dark: #e9e3c3;
     --dark: #1c2331;
-    --light: #f4f6fb;
+    --primary-dark : #433c25;
+    --primary : #804b2e;
     --primary: #a86337;
-    --secondary: #6c7488;
+     --soft-primary: #c99068;
+    --light: #f4f6fb;
+    --secondary: #3f566e;
+    --soft-secondary : #8ea1af;
     --success: #28a745;
     --info: #17a2b8;
     --warning: #ffc107;
@@ -25,8 +28,10 @@
 
   /* text colors */
   .text-dark { color: var(--dark) }
-  .text-primary-middle { color: var(--primary-middle) }
-  .text-primary-dark { color: var(--primary-dark) }
+  .text-primary { color: var(--primary) }
+    .text-soft-primary { color: var(--soft-primary) }
+
+  .text-soft-dark { color: var(--soft-dark) }
   .text-secondary { color: var(--secondary) }
   .text-success { color: var(--success) }
   .text-info { color: var(--info) }
@@ -34,12 +39,15 @@
   .text-danger { color: var(--danger) }
   .text-light { color: #fff !important; }
   .text-muted { color: #9aa1b5 !important; }
-  .text-primary { color: var(--primary) !important; }
+  .text-soft-secondary { color: var(--soft-secondary) !important; }
 
  /* colors */
 
-  .bg-dark { background: var(--primary-dark) }
+  .bg-soft-dark { background: var(--soft-dark) }
+  .bg-dark { background: var(--dark) }
+  .bg-soft-primary {background: var(--soft-primary)}
   .bg-secondary { background: var(--secondary) }
+  .bg-soft-secondary { background: var(--soft-secondary) }
   .bg-success { background: var(--success) }
   .bg-info { background: var(--info) }
   .bg-warning { background: var(--warning) }
@@ -247,12 +255,13 @@
     scroll-snap-align: start;
   }
   @media (max-width: 991.98px) {
-    .work-track .work-slide { flex: 0 0 calc((100% - 24px) / 2); } /* 2 cartes tablette */
-  }
-  @media (max-width: 575.98px) {
-    .work-track .work-slide { flex: 0 0 88%; } /* 1 carte + un aperçu de la suivante sur mobile */
-    .work-carousel { padding: 0 8px; }
-    .carousel-arrow { display: none; } /* sur mobile : on glisse au doigt plutôt que les flèches */
+    .work-track .work-slide { flex: 0 0 47%; 
+    } 
+
+  }  
+  @media (max-width: 775.98px) {
+    .work-track .work-slide { flex: 0 0 100%; } /* 1 carte + un aperçu de la suivante sur mobile */
+  
   }
   .carousel-arrow {
     position: absolute;
@@ -269,7 +278,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1em;
-    transition: background 0.2s, color 0.2s;
+    transition: 0.2s, color 0.2s;
   }
   .carousel-arrow:hover { background: var(--primary); color: #fff; }
   .carousel-arrow.prev { left: 0; }
