@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capucine Fauroux — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F4EC;
+    --ink: #1B1B18;
+    --magenta: #E8175D;
+    --cyan: #009C9C;
+    --line: #1B1B18;
+    --muted: #8A8578;
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Repères de massicot (signature graphique) ---------- */
+  .crop {
+    position: relative;
+  }
+  .crop::before, .crop::after,
+  .crop-mark-tl, .crop-mark-br { content: ''; }
+  .crop::before, .crop::after {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--ink);
+    opacity: 0.55;
+  }
+  .crop::before { top: -7px; left: -7px; border-right: none; border-bottom: none; }
+  .crop::after { bottom: -7px; right: -7px; border-left: none; border-top: none; }
+
+  .wrap { width: 90%; max-width: 1180px; margin: 0 auto; }
+
+  /* ---------- Bandeau de tête ---------- */
+  .topbar {
+    border-bottom: 3px solid var(--ink);
+    padding: 14px 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+  }
+  .topbar span.mark { color: var(--magenta); font-weight: 700; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 56px 0 60px;
+  }
+  .hero-img-frame {
+    width: 200px; height: 200px;
+    position: relative;
+    padding: 8px;
+  }
+  .hero-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%);
+  }
+  .hero-img-fallback {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.4em;
+  }
+  .hero-text .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 10px;
+  }
+  .hero-text h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2.2em, 5vw, 3.4em);
+    margin: 0 0 6px;
+    line-height: 1.02;
+    text-transform: uppercase;
+  }
+  .hero-text h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: var(--cyan);
+    margin: 0 0 18px;
+  }
+  .hero-text p { max-width: 60ch; color: #45443c; }
+
+  /* ---------- Titres de section ---------- */
+  .section { padding: 50px 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 34px;
+  }
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    color: var(--magenta);
+    font-size: 0.9em;
+  }
+  .section-title {
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin: 0;
+    flex: 1;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 10px;
+  }
+
+  /* ---------- Carrousel affiches ---------- */
+  .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 26px;
+    padding: 10px 10px 24px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel-container::-webkit-scrollbar { height: 6px; }
+  .carousel-container::-webkit-scrollbar-thumb { background: var(--ink); }
+
+  .carousel-item {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+  }
+  .carousel-item .thumb {
+    width: 100%; height: 360px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .carousel-item .thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .carousel-item:hover .thumb img { transform: scale(1.04); }
+  .thumb-fallback {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px;
+    background: repeating-linear-gradient(135deg, #EDE9DD, #EDE9DD 10px, #E4DFCF 10px, #E4DFCF 20px);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75em;
+    text-align: center;
+    padding: 20px;
+  }
+  .carousel-desc { padding: 16px 18px 18px; }
+  .carousel-desc .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .carousel-desc h4 {
+    margin: 0 0 6px;
+    font-size: 1.05em;
+  }
+  .carousel-desc p { margin: 0; font-size: 0.88em; color: #55534a; }
+
+  /* ---------- Frise chronologique ---------- */
+  .timeline-scroll { overflow-x: auto; padding: 30px 0 20px; }
+  .timeline {
+    display: flex;
+    min-width: 1080px;
+    position: relative;
+
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 22px; left: 0; right: 0;
+    height: 3px;
+    background: var(--ink);
+  }
+  .timeline-node { flex: 1; position: relative; padding: 0 18px 0 0; }
+  .timeline-node::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 0;
+    width: 16px; height: 16px;
+    background: var(--magenta);
+    border: 2px solid var(--ink);
+    transform: rotate(45deg);
+  }
+  .timeline-node:nth-child(even)::before { background: var(--cyan); }
+  .time-date {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    padding-top: 30px;
+  }
+  .time-company { font-weight: 700; margin: 0 0 8px; font-size: 1.02em; }
+  .time-desc { margin: 0; padding: 0; list-style: none; font-size: 0.86em; color: #55534a; }
+  .time-desc li { position: relative; padding-left: 14px; margin-bottom: 5px; }
+  .time-desc li::before { content: "—"; position: absolute; left: 0; color: var(--magenta); }
+
+  /* ---------- Recommandations + contact ---------- */
+  .grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+  .recommendation-card {
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    border-left: 6px solid var(--magenta);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+  }
+  .rec-text { font-style: italic; margin: 0 0 12px; }
+  .rec-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .contact-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 30px 28px;
+    height: fit-content;
+  }
+  .contact-box h3 {
+    margin: 0 0 16px;
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.15em;
+  }
+  .contact-box p { margin: 0; font-size: 0.92em; color: #D8D5C8; }
+  .contact-box p strong { color: var(--paper); }
+  .contact-btn {
+    display: inline-block;
+    background: var(--magenta);
+    color: #fff;
+    padding: 11px 22px;
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 20px;
+  }
+  .contact-btn:hover { background: var(--cyan); }
+
+  footer {
+    border-top: 3px solid var(--ink);
+    margin-top: 40px;
+    padding: 18px 0 40px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; text-align: left; }
+    .hero-img-frame { width: 140px; height: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>Portfolio — <span class="mark">CF</span></span>
+    <span>Communication digitale &amp; création visuelle</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-img-frame crop">
+      <img src="./assets/img/cap2.png" alt="Capucine Fauroux"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="hero-img-fallback" style="display:none;">CF</div>
+    </div>
+    <div class="hero-text">
+      <span class="eyebrow">Chargée de communication digitale</span>
+      <h1>Capucine Fauroux</h1>
+      <h2>Créatrice de contenus &amp; UX/UI</h2>
+      <p>Spécialisée dans la création visuelle print/digital et l'expérience utilisateur. Récemment en poste au Centre Aquatique de Maisons-Laffitte, où elle conçoit l'identité visuelle des événements et anime la relation client.</p>
+    </div>
+  </header>
+
+  <!-- SECTION 1 : CRÉATIONS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h3 class="section-title">Créations print &amp; réalisations</h3>
+    </div>
+    <div class="carousel-container">
+
+      <div class="carousel-item">
+        <div class="thumb">
+          <img src="./assets/png/affiches/halloween.png" alt="Affiche Escape Game Halloween"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-fallback" style="display:none;">Visuel à venir<br>affiche-halloween.png</div>
+        </div>
+        <div class="carousel-desc">
+          <span class="tag">Événementiel</span>
+          <h4>Escape Game d'Halloween</h4>
+          <p>Affiche promotionnelle et conception de l'univers visuel en lien avec le service jeunesse.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="thumb">
+          <img src="./assets/png/affiches/Coach&mental-2025.png" alt="Affiche Événement Centre Aquatique"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-fallback" style="display:none;">Visuel à venir<br>affiche-centre.png</div>
+        </div>
+        <div class="carousel-desc">
+          <span class="tag">Campagne</span>
+          <h4>Événements Centre Aquatique</h4>
+          <p>Campagne de communication globale pour les offres et animations de la structure.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="thumb">
+          <img src="./assets/png/affiches/PowerT-2025.png" alt="Projet Business Partners"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-fallback" style="display:none;">Visuel à venir<br>business-partners.png</div>
+        </div>
+        <div class="carousel-desc">
+          <span class="tag">UX / UI</span>
+          <h4>Business Partners</h4>
+          <p>Maquettage UX/UI et développement du site internet en cours de production.</p>
+        </div>
+      </div>
+
+        <div class="carousel-item">
+        <div class="thumb">
+          <img src="./assets/png/affiches/pacques-2026.png" alt="Projet Business Partners"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-fallback" style="display:none;">Visuel à venir<br>business-partners.png</div>
+        </div>
+        <div class="carousel-desc">
+          <span class="tag">UX / UI</span>
+          <h4>Business Partners</h4>
+          <p>Maquettage UX/UI et développement du site internet en cours de production.</p>
+        </div>
+      </div>
+
+        <div class="carousel-item">
+        <div class="thumb">
+          <img src="./assets/png/affiches/Zen-2026.png" alt="Projet Business Partners"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="thumb-fallback" style="display:none;">Visuel à venir<br>business-partners.png</div>
+        </div>
+        <div class="carousel-desc">
+          <span class="tag">UX / UI</span>
+          <h4>Business Partners</h4>
+          <p>Maquettage UX/UI et développement du site internet en cours de production.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2 : PARCOURS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h3 class="section-title">Parcours &amp; expériences</h3>
+    </div>
+    <div class="timeline-scroll">
+      <div class="timeline">
+
+        <div class="timeline-node">
+          <span class="time-date">2025 — 2026</span>
+          <div class="time-company">Centre Aquatique Maisons-Laffitte</div>
+          <ul class="time-desc">
+            <li>Création des visuels événementiels &amp; print</li>
+            <li>Conception et animation (Escape game Halloween…)</li>
+            <li>Accueil et gestion de la relation client</li>
+          </ul>
+        </div>
+
+        <div class="timeline-node">
+          <span class="time-date">2024 — 2025</span>
+          <div class="time-company">Crédit Agricole (Task Force)</div>
+          <ul class="time-desc">
+            <li>Conseil et vente banque au quotidien</li>
+            <li>Suivi et gestion des risques clients</li>
+          </ul>
+        </div>
+
+        <div class="timeline-node">
+          <span class="time-date">2021 — 2023</span>
+          <div class="time-company">ZeMust (UX/UI Designer)</div>
+          <ul class="time-desc">
+            <li>Conception de pages web et e-mailings</li>
+            <li>Définition d'identités graphiques associatives</li>
+          </ul>
+        </div>
+
+        <div class="timeline-node">
+          <span class="time-date">2019 — 2020</span>
+          <div class="time-company">Lavoir Moderne / Apollo</div>
+          <ul class="time-desc">
+            <li>Création d'affiches de spectacles (Apollo)</li>
+            <li>Création de contenus vidéo pour les réseaux sociaux</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 : RECOMMANDATIONS + CONTACT -->
+  <section class="section">
+    <div class="grid">
+      <div>
+        <div class="section-head">
+          <span class="section-num">03</span>
+          <h3 class="section-title">Recommandations</h3>
+        </div>
+        <div class="recommendation-card">
+          <p class="rec-text">« Capucine fait preuve d'une grande créativité et d'une excellente maîtrise des outils digitaux. Son implication sur les projets événementiels a été un vrai plus. »</p>
+          <span class="rec-author">Recommandation via LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="contact-box">
+        <h3>Restons en contact</h3>
+        <p>
+          <strong>Basée à</strong> Carrières-sur-Seine (78)<br><br>
+          <strong>Tél.</strong> 06 14 37 14 30<br>
+          <strong>Email</strong> capucine.fauroux@gmail.com
+        </p>
+        <a href="mailto:capucine.fauroux@gmail.com" class="contact-btn">M'envoyer un message</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">Capucine Fauroux — Portfolio 2026</div>
+</footer>
+
+</body>
+</html>
