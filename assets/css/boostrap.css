@@ -67,6 +67,24 @@
     text-align: center;
 }
 
+.btn-rounded { border-radius: 999px; }
+
+.btn-primary { background: var(--primary); border-color: var(--primary); }
+
+.btn-outline-primary { border-color: var(--primary); color: var(--primary); }
+
+.btn-outline-primary:hover { background: var(--primary); color: #fff; }
+
+.btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; }
+
+.btn-secondary { background: var(--secondary); border-color: var(--secondary); }
+
+.btn-dark { background: var(--dark); border-color: var(--dark); }
+
+.btn-secondary:hover { background: var(--secondary-dark); border-color: var(--secondary-dark); color: #fff; }
+
+.btn-dark:hover { background: var(--dark); border-color: var(--dark); color: #fff; }
+
 .btn:hover {
     text-decoration: none;
     background: var(--primary-dark);
@@ -355,10 +373,7 @@
  
   /* Recommendation */
   .rec-card {
-    border: none;
-    border-left: 4px solid var(--primary);
-    border-radius: 10px;
-    background: #fff;
+    background: #f9f9f9;
     box-shadow: 0 4px 14px rgba(20,30,60,0.05);
   }
   .rec-card i.fa-quote-left { color: #d7dcee; font-size: 1.6em; }
@@ -368,3 +383,197 @@
     color: #9aa1b5;
     font-size: 0.85em;
   }
+
+   /* ---------------- DNA CRÉATIF ---------------- */
+  .dna-section{
+    padding:80px 24px 100px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .dna-eyebrow{
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    font-weight:700;
+    margin:0 0 8px;
+  }
+  .dna-title{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0 0 40px;
+  }
+  .dna-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  @media(max-width:900px){ .dna-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .dna-grid{grid-template-columns:1fr;} }
+ 
+  .dna-card{
+    background:var(--cream-2);
+    border:1px solid rgba(43,43,40,.08);
+    border-radius:16px;
+    padding:26px 22px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .dna-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:var(--accent, var(--terracotta));
+    opacity:0;
+    transition:opacity .35s ease;
+  }
+  .dna-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px -18px rgba(43,43,40,.35);
+    border-color:transparent;
+  }
+  .dna-card:hover::before{ opacity:1; }
+  .dna-card.open{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px -18px rgba(43,43,40,.35);
+  }
+  .dna-card.open::before{ opacity:1; }
+ 
+  .dna-card-inner{ position:relative; z-index:1; }
+ 
+  .dna-icon-wrap{
+    width:52px; height:52px;
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.04);
+    margin-bottom:18px;
+    transition:.35s ease, transform .45s cubic-bezier(.22,1,.36,1);
+  }
+  .dna-card:hover .dna-icon-wrap, .dna-card.open .dna-icon-wrap{
+    background:rgba(255,255,255,.22);
+    transform:rotate(-8deg) scale(1.08);
+  }
+  .dna-icon-wrap svg{ width:26px; height:26px; stroke:var(--accent, var(--terracotta)); transition:stroke .35s ease; }
+  .dna-card:hover .dna-icon-wrap svg, .dna-card.open .dna-icon-wrap svg{ stroke:#fff; }
+ 
+  .dna-card-title{
+    font-size:18px; font-weight:800; margin:0 0 8px;
+    transition:color .35s ease;
+  }
+  .dna-card:hover .dna-card-title, .dna-card.open .dna-card-title{ color:#fff; }
+ 
+  .dna-card-tagline{
+    font-size:14px; line-height:1.5; color:var(--ink-soft); margin:0;
+    transition:color .35s ease;
+  }
+  .dna-card:hover .dna-card-tagline, .dna-card.open .dna-card-tagline{ color:rgba(255,255,255,.85); }
+ 
+  .dna-detail{
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    transition:max-height .4s ease, opacity .3s ease, margin-top .4s ease;
+    font-size:13.5px;
+    line-height:1.55;
+    color:rgba(255,255,255,.92);
+  }
+  .dna-card.open .dna-detail{
+    max-height:160px;
+    opacity:1;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.25);
+  }
+ 
+  .dna-hint{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ink-soft); margin-top:16px;
+    transition:color .35s ease;
+  }
+  .dna-card:hover .dna-hint, .dna-card.open .dna-hint{ color:rgba(255,255,255,.85); }
+  .dna-hint svg{ width:12px; height:12px; transition:transform .35s ease; }
+  .dna-card.open .dna-hint svg{ transform:rotate(180deg); }
+ 
+  /* ---------------- RECOMMANDATIONS ---------------- */
+
+  .rec-inner{
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .rec-eyebrow{
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--success); font-weight:700; margin:0 0 10px;
+  }
+  .rec-title{
+    font-size:clamp(26px,4vw,36px);
+    font-weight:800; margin:0 0 44px;
+  }
+ 
+  .rec-carousel{ position:relative; }
+  .rec-track{ overflow:hidden; }
+  .rec-slides{
+    display:flex;
+    transition:transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .rec-slide{
+    flex:0 0 96%;
+  }
+  .rec-quote-icon{
+    width:34px; height:34px; margin:0 auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    opacity:.55;
+  }
+  .rec-quote{
+    font-size:18px;
+    line-height:1.65;
+    font-weight:500;
+    color:var(--dark);
+  }
+  .rec-person{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+  }
+  .rec-avatar{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--warning);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; color:#fff;
+    flex-shrink:0;
+  }
+  .rec-person-info{ text-align:left; }
+  .rec-name{ font-size:14.5px; font-weight:700; margin:0; }
+  .rec-role{ font-size:12.5px; color:rgba(255,255,255,.55); margin:2px 0 0; }
+ 
+  .rec-controls{
+    display:flex; align-items:center; justify-content:center;
+    gap:18px; margin-bottom:34px;
+  }
+  .rec-arrow{
+    width:28px; 
+    height:28px; 
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+    background:var(--primary);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:.25s ease, border-color .25s ease, transform .2s ease;
+  }
+  .rec-arrow:hover{ background:var(--warning); border-color:var(--warning); transform:scale(1.06); }
+  .rec-arrow svg{ width:16px; height:16px; }
+ 
+  .rec-dots{ display:flex; gap:7px; }
+  .rec-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:rgba(255,255,255,.28);
+    border:none; padding:0; cursor:pointer;
+    transition:.25s ease, width .25s ease;
+  }
+  .rec-dot.active{ background:var(--warning); width:20px; border-radius:4px; }
+
+  .rec-cta:hover{ background:var(--warning); transform:translateY(-2px); }
+  .rec-cta svg{ width:16px; height:16px; }
