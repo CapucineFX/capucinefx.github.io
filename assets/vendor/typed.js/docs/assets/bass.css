@@ -175,6 +175,21 @@
   box-sizing:border-box;
 }
 
+.ml-sm-1{ margin-left: .5rem; }
+.mr-sm-1{ margin-right: .5rem; }
+
+.ml-sm-2{ margin-left: 1rem; }
+.mr-sm-2{ margin-right: 1rem; }
+
+.ml-sm-3{ margin-left: 2rem; }
+.mr-sm-3{ margin-right: 2rem; }
+
+.ml-sm-4{ margin-left: 4rem; }
+.mr-sm-4{ margin-right: 4rem; }
+
+.mr-auto{ margin-right:auto }
+.ml-auto{ margin-left:auto }
+
 .col-right{
   float:right;
   box-sizing:border-box;
