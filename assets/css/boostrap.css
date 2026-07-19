@@ -522,6 +522,7 @@
   }
   .rec-slide{
     min-width:95%;
+    border: 0px;
   }
   .rec-quote-icon{
     width:34px; height:34px; margin:0 auto 18px;
