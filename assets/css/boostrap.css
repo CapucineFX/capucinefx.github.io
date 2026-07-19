@@ -521,7 +521,7 @@
     transition:transform .5s cubic-bezier(.22,1,.36,1);
   }
   .rec-slide{
-    flex:0 0 96%;
+    min-width:95%;
   }
   .rec-quote-icon{
     width:34px; height:34px; margin:0 auto 18px;

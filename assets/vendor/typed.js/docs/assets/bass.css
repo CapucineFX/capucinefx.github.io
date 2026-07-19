@@ -167,6 +167,14 @@
 .py4{ padding-top: 4rem; padding-bottom: 4rem }
 .px4{ padding-left: 4rem; padding-right: 4rem }
 
+.ml-xs-1{ margin-left: .5rem; }
+.mr-xs-1{ margin-right: .5rem; }
+
+.ml-xs-2{ margin-left: 1rem; }
+.mr-xs-2{ margin-right: 1rem; }
+
+
+
 .mr-sm-0{ margin-right: 0; }
 
 .ml-sm-0{ margin-left: 0; }
