@@ -253,13 +253,19 @@
     flex: 0 0 calc((100% - 2 * 24px) / 3); /* 3 cartes desktop */
     scroll-snap-align: start;
   }
-  @media (max-width: 991.98px) {
-    .work-track .work-slide { flex: 0 0 47%; 
+ @media screen and (min-width: 1200px)  {
+    .work-track .work-slide { flex: 0 0 32%; 
     } 
 
   }  
-  @media (max-width: 775.98px) {
-    .work-track .work-slide { flex: 0 0 100%; } /* 1 carte + un aperçu de la suivante sur mobile */
+
+  @media all and (min-width: 651px) and (max-width: 1080px) {
+    .work-track .work-slide { flex: 0 0 49%; 
+    } 
+
+  }  
+ @media screen and (max-width: 650px)  {
+    .work-track .work-slide { flex: 0 0 98%; } /* 1 carte + un aperçu de la suivante sur mobile */
   
   }
   .carousel-arrow {
